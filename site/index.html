@@ -248,7 +248,7 @@ function hero() {
   if (calm < .34) { ctx.save(); ctx.globalAlpha = cl(1 - calm * 3); ctx.translate(W / 2, H * .52 + bob); ctx.rotate(tilt); ctx.drawImage(HP, -hpW * hs / 2, -hpH * hs / 2, hpW * hs, hpH * hs); ctx.restore(); }
   if (k > 0) {
     const ch = H * (.7 + k * 2.4), cw = ch * CUP.width / CUP.height, off = 1 - eo(k), blur = (1 - k) * k * 4;
-    ctx.filter = blur > .3 ? `blur(${blur.toFixed(1)}px)` : 'none';
+    ctx.filter = blur > .3 && !mobile ? `blur(${blur.toFixed(1)}px)` : 'none';   // canvas blur is too slow on phones
     ctx.save(); ctx.translate(W * .28 - off * W * .7, H / 2); ctx.rotate(-.06 * (1 - k)); ctx.drawImage(CUP, -cw / 2, -ch / 2, cw, ch); ctx.restore();
     ctx.save(); ctx.translate(W * .72 + off * W * .7, H / 2); ctx.scale(-1, 1); ctx.rotate(-.06 * (1 - k)); ctx.drawImage(CUP, -cw / 2, -ch / 2, cw, ch); ctx.restore();
     ctx.filter = 'none'; ctx.fillStyle = `rgba(13,14,18,${cl((k - .72) / .2)})`; ctx.fillRect(-20, -20, W + 40, H + 40);
